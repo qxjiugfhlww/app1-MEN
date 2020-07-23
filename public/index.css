@@ -1,21 +1,42 @@
-.todo {
-  margin-bottom: 1rem;
-}
-
-.todo span.completed {
-  text-decoration: line-through;
-}
-
-.todo label {
+.index {
+  margin: 10px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  background: #f3f3f3;
-  padding: 1rem;
+  overflow-y: auto;
 }
 
-.todo i {
-  z-index: 2;
+.index > .post {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: rgb(252, 252, 252);
+  margin: 10px;
+  border-radius: 5px;
+  border: solid 1px rgb(0, 0, 0, 0.1);
+  padding: 5px;
+  width: 90%;
+}
+
+.index > .post > .post-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 70%;
+  
+}
+
+.index > .post > .post-info > span {
+  font-size: 18px;
+  color: #5466D6;
+  font-weight: 500;
+}
+
+.index > .post > .post-info > p {
+  color: #696969;
+
+}
+
+.index > .post > .post-info > .dates {
+  font-size: 12px;
 }

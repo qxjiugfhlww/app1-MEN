@@ -1,0 +1,75 @@
+<div class="add">
+  <h2>Create post</h2>
+  <form class='add-post' action="/add" method="POST">
+    <textarea name="post" class="form-control" id="exampleFormControlTextarea3"
+      placeholder="Type post here..." required></textarea>
+    <div class="interact">
+      <input name="id" id='tg-id' class="form-control" type="text" placeholder="ID" required>
+      <input name="date_start" id="date_start" type="datetime-local" class="form-control" required>
+      <input name="date_end" id="date_end" type="datetime-local" class="form-control" required>
+
+      <div class="add-rate">
+        <div class="dropdown show">
+          <button name="time_rate" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            day
+          </button>
+          <div id="dropdown-show" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">minute</a>
+            <a class="dropdown-item" href="#">hour</a>
+            <a class="dropdown-item" href="#">day</a>
+            <a class="dropdown-item" href="#">week</a>
+            <a class="dropdown-item" href="#">month</a>
+
+          </div>
+        </div>
+        <input id="num_rate" name="num_rate" class="form-control" type="text" placeholder="rate" required>
+
+      </div>
+
+      <button id='sendButton' class="btn btn-primary" type="submit">Create</button>
+    </div>
+  </form>
+
+</div>
+
+
+<input type="hidden" value="" name="date_start_y" id="date_start_y">
+<input type="hidden" value="" name="date_start_m" id="date_start_m">
+<input type="hidden" value="" name="date_start_d" id="date_start_d">
+<input type="hidden" value="" name="date_start_h" id="date_start_h">
+<input type="hidden" value="" name="date_start_mt" id="date_start_mt">
+
+<input type="hidden" value="" name="date_end_y" id="date_end_y">
+<input type="hidden" value="" name="date_end_m" id="date_end_m">
+<input type="hidden" value="" name="date_end_d" id="date_end_d">
+<input type="hidden" value="" name="date_end_h" id="date_end_h">
+<input type="hidden" value="" name="date_end_mt" id="date_end_mt">
+
+<script>
+
+  $(function () {
+
+    $('#sendButton').on("click", () => {
+      $('#date_start_y').val($('#date_start_y').val());
+      $('#date_start_y').val($('#date_start_m').val().slice(0,4));
+      $('#date_start_y').val($('#date_start_d').val().slice(5,7));
+      $('#date_start_y').val($('#date_start_h').val().slice(8,10));
+      $('#date_start_y').val($('#date_start_mt').val().slice(11,13));
+    }); 
+
+
+    $("#dropdownMenuButton").on("click", function () {
+      $("#dropdown-show").toggleClass("show");
+    });
+
+    $("a").on("click", function () {
+      $("#dropdownMenuButton").html($(this).text());
+      $("#dropdown-show").toggleClass("show");
+    });
+
+
+
+  });
+
+</script>

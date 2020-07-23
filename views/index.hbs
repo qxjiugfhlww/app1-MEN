@@ -1,7 +1,40 @@
-<h2>Index page</h2>
+<div class="index">
 
-fhhfhf{{todos}}
+<h2>00:00:00</h2>
 
+
+{{#if posts.length}}
+  {{#each posts}}
+  <div class="post">
+    <div class="post-info">
+      <span>ID {{id}}</span>
+      <p>{{post}}</p>
+      <div class="dates">
+        <span>{{date}}</span>
+      </div>
+    </div>
+    <div class="post-status">
+
+    </div>
+  </div>  
+  {{/each}}
+{{else}}
+<p>No todos!</p>
+{{/if}}
+
+
+</div>
+
+<script>
+  setInterval(() => {
+    $("h2").text(new Date().toJSON().slice(0,19))
+  }, 1000);
+
+  
+</script>
+
+
+{{!-- 
 {{#if todos.length}}
 <ul>
   {{#each todos}}
@@ -28,4 +61,4 @@ fhhfhf{{todos}}
 </ul>
 {{else}}
 <p>No todos!</p>
-{{/if}}
+{{/if}} --}}

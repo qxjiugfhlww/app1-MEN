@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
-    "mongoose": "^5.9.25"
+    "mongoose": "^5.9.25",
+    "telegraf": "^3.38.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
