@@ -6,6 +6,10 @@ const schema = new Schema({
     required: true
   },
   date_start: {
+    date_start: {
+      type: Date,
+      required: true
+    },
     year: {
       type: String,
       required: true
@@ -28,6 +32,10 @@ const schema = new Schema({
     }
   },
   date_end: {
+    date_end: {
+      type: Date,
+      required: true
+    },
     year: {
       type: String,
       required: true
@@ -58,12 +66,12 @@ const schema = new Schema({
     required: true
   },
   id : {
-    type: String,
+    type: Number,
     required: true
   },
   send : {
-    type: Int,
-    required: true
+    type: Number,
+    required: false
   },
 });
 

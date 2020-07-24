@@ -10,16 +10,18 @@
 
       <div class="add-rate">
         <div class="dropdown show">
-          <button name="time_rate" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+          <button class="btn btn-secondary dropdown-toggle" type="input" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             day
           </button>
           <div id="dropdown-show" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">minute</a>
-            <a class="dropdown-item" href="#">hour</a>
-            <a class="dropdown-item" href="#">day</a>
-            <a class="dropdown-item" href="#">week</a>
-            <a class="dropdown-item" href="#">month</a>
+            <a class="dropdown-item">year</a>
+            <a class="dropdown-item">month</a>
+            <a class="dropdown-item">week</a>
+            <a class="dropdown-item">day</a>
+            <a class="dropdown-item" >hour</a>
+            <a class="dropdown-item">minute</a>
+            <a class="dropdown-item">second</a>
 
           </div>
         </div>
@@ -29,33 +31,48 @@
 
       <button id='sendButton' class="btn btn-primary" type="submit">Create</button>
     </div>
+
+    <input type="hidden" value="" name="date_start_y" id="date_start_y">
+    <input type="hidden" value="" name="date_start_m" id="date_start_m">
+    <input type="hidden" value="" name="date_start_d" id="date_start_d">
+    <input type="hidden" value="" name="date_start_h" id="date_start_h">
+    <input type="hidden" value="" name="date_start_mt" id="date_start_mt">
+
+    <input type="hidden" value="" name="date_end_y" id="date_end_y">
+    <input type="hidden" value="" name="date_end_m" id="date_end_m">
+    <input type="hidden" value="" name="date_end_d" id="date_end_d">
+    <input type="hidden" value="" name="date_end_h" id="date_end_h">
+    <input type="hidden" value="" name="date_end_mt" id="date_end_mt">
+
+    <input type="hidden" value="" name="time_rate" id="time_rate">
+
   </form>
 
 </div>
 
 
-<input type="hidden" value="" name="date_start_y" id="date_start_y">
-<input type="hidden" value="" name="date_start_m" id="date_start_m">
-<input type="hidden" value="" name="date_start_d" id="date_start_d">
-<input type="hidden" value="" name="date_start_h" id="date_start_h">
-<input type="hidden" value="" name="date_start_mt" id="date_start_mt">
 
-<input type="hidden" value="" name="date_end_y" id="date_end_y">
-<input type="hidden" value="" name="date_end_m" id="date_end_m">
-<input type="hidden" value="" name="date_end_d" id="date_end_d">
-<input type="hidden" value="" name="date_end_h" id="date_end_h">
-<input type="hidden" value="" name="date_end_mt" id="date_end_mt">
 
 <script>
 
   $(function () {
 
     $('#sendButton').on("click", () => {
-      $('#date_start_y').val($('#date_start_y').val());
-      $('#date_start_y').val($('#date_start_m').val().slice(0,4));
-      $('#date_start_y').val($('#date_start_d').val().slice(5,7));
-      $('#date_start_y').val($('#date_start_h').val().slice(8,10));
-      $('#date_start_y').val($('#date_start_mt').val().slice(11,13));
+      $('#date_start_y').val($('#date_start').val().slice(0,4));
+      $('#date_start_m').val($('#date_start').val().slice(5,7));
+      $('#date_start_d').val($('#date_start').val().slice(8,10));
+      $('#date_start_h').val($('#date_start').val().slice(11,13));
+      $('#date_start_mt').val($('#date_start').val().slice(14,16));
+
+      $('#date_end_y').val($('#date_end').val().slice(0,4));
+      $('#date_end_m').val($('#date_end').val().slice(5,7));
+      $('#date_end_d').val($('#date_end').val().slice(8,10));
+      $('#date_end_h').val($('#date_end').val().slice(11,13));
+      $('#date_end_mt').val($('#date_end').val().slice(14,16));
+
+      $('#time_rate').val($('#dropdownMenuButton').text());
+
+      console.log($('#date_start_y').val());
     }); 
 
 
