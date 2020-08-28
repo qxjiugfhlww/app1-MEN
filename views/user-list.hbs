@@ -1,25 +1,22 @@
-<div class="index">
+<div class="user-list">
 
 <h2>00:00:00</h2>
 
 
-{{#if posts.length}}
-  {{#each posts}}
-  <div class="post">
-    <div class="post-info">
-      <span>ID {{id}}</span>
-      <p>{{post}}</p>
-      <div class="dates">
-        <span>{{date}}</span>
-      </div>
+{{#if users.length}}
+  {{#each users}}
+  <div class="user">
+    <div class="user-info">
+      <span>ID: {{user_id}}</span>
+      <p>{{user_name}}</p>
     </div>
-    <div class="post-status">
+    <div class="user-status">
 
     </div>
   </div>  
   {{/each}}
 {{else}}
-<p>No todos!</p>
+<p>Nothing!</p>
 {{/if}}
 
 

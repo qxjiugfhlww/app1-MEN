@@ -45,7 +45,7 @@ app.use(express.static('models'));
 async function start() {
   try {
     await mongoose.connect(
-      'mongodb+srv://xiaoji0w:FF11ff@cluster0.5lkqb.mongodb.net/posts', {
+      'mongodb+srv://xiaoji0w:FF11ff@cluster0.5lkqb.mongodb.net/tgbot?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useFindAndModify: false,
         useUnifiedTopology: true 

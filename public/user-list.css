@@ -1,10 +1,10 @@
-.index {
+.user-list {
   margin: 10px;
   width: 100%;
   overflow-y: auto;
 }
 
-.index > .post {
+.user-list > .user {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -17,7 +17,7 @@
   width: 90%;
 }
 
-.index > .post > .post-info {
+.user-list > .user > .user-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,17 +26,17 @@
   
 }
 
-.index > .post > .post-info > span {
+.user-list > .user > .user-info > span {
   font-size: 18px;
-  color: #5466D6;
+  color: #548cd6;
   font-weight: 500;
 }
 
-.index > .post > .post-info > p {
+.user-list > .user > .user-info > p {
   color: #696969;
 
 }
 
-.index > .post > .post-info > .dates {
+.index > .user > .user-info > .dates {
   font-size: 12px;
 }

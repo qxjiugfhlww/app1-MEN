@@ -1,0 +1,36 @@
+<div class="add-user">
+  <h2>Добавить пользователя</h2>
+  <form class='add-user_form' action="/add-user" method="POST">
+    <div class="interact">
+      <input name="user_name" id='user_name' class="form-control" type="text" placeholder="Имя пользователя" required>
+      <input name="user_id" id="user_id" class="form-control" type="text" placeholder="ID пользователя" required>
+
+      <button id='sendButton' class="btn btn-primary" type="submit">Добавить</button>
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+<script>
+
+  $(function () {
+
+
+    $("#dropdownMenuButton").on("click", function () {
+      $("#dropdown-show").toggleClass("show");
+    });
+
+    $("a").on("click", function () {
+      $("#dropdownMenuButton").html($(this).text());
+      $("#dropdown-show").toggleClass("show");
+    });
+
+
+
+  });
+
+</script>

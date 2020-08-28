@@ -3,6 +3,8 @@ body {
   padding: 0;
   width: 100vw;
   height: 100vh;
+
+  background-color: rgb(230, 230, 230);
 }
 
 /* @import url("/public/navbar.css");

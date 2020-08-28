@@ -1,0 +1,88 @@
+.add-post {
+  width: 100%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+h2 {
+  color: #232323;
+  margin-top: 5%;
+
+}
+
+.dropdown-menu-display {
+  position: absolute;
+  display: block;
+}
+
+.add-post > .add-post_form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 60%;
+  height: 50%;
+  background-color: rgb(247, 247, 247);
+  padding: 10px;
+}
+
+.add-post > .add-post_form > #exampleFormControlTextarea3 {
+  resize: none;
+  background-color: #fff;
+  height: 90%;
+  width: 60%;
+
+}
+
+
+.add-post > .add-post_form > .interact {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  height: 90%;
+}
+
+
+
+.add-post > .add-post_form > .interact > button { 
+  width: 100%;
+
+}
+
+.add-post > .add-post_form > .interact > .dropdown-toggle {
+  background-color: #007bff;
+
+}
+
+.add-post > .add-post_form > .interact > .add-rate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.add-post > .add-post_form > .interact > .add-rate > .dropdown {
+  width: 49%;
+}
+
+.add-post > .add-post_form > .interact > .add-rate > .dropdown > .dropdown-menu {
+
+}
+
+.add-post > .add-post_form > .interact > .add-rate > input {
+  width: 49%;
+}
+
+.add-post > .add-post_form > .interact > .add-rate > .dropdown > .dropdown-toggle {
+  background-color: #fff;
+  color: #5f5f5f;
+  border: 1px solid rgba(0,0,0,0.2);
+  width: 100%;
+}

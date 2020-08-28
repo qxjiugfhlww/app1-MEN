@@ -1,0 +1,63 @@
+.post-list {
+  margin: 10px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+h2 {
+  margin-top: 1%;
+}
+
+.post-list > .post {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(250, 250, 250);
+  margin: 10px;
+  border-radius: 5px;
+  border: solid 1px rgb(0, 0, 0, 0.1);
+
+  width: 90%;
+}
+
+.post-list > .post > .post-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 85%;
+  
+}
+
+.post-list > .post > .post-info > span {
+  font-size: 18px;
+  color: #548cd6;
+  font-weight: 500;
+}
+
+.post-list > .post > .post-info > p {
+  color: #696969;
+
+}
+
+.index > .post > .post-info > .dates {
+  font-size: 12px;
+}
+
+.post-delete {
+  justify-self: flex-end;
+  height: 90%;
+  width: 10%;
+  color: black;
+}
+
+.post-delete > img {
+  width: 20%;
+  height: 20%;
+}
+
+.invisible-id {
+  font-size: 0px;
+  visibility: hidden;
+}
