@@ -1,39 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Tg-bot</a> 
+<nav>
+  <img class="test" src="tgbot_t.png" alt="">
+  <span>telegram-bot</span>
 
-  <img class="test" src="tgbot.png" alt="">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class='dropdown'>
+    <div class='dropdown-title'> Посты <img src="menu.svg" alt=""> </div>
+    <div class='dropdown-items'>
+      <a class='dropdown-item' href="/add-post"> Добавить пост</a>
+      <a class='dropdown-item' href="/post-list"> Список постов</a>
+    </div>
+  </div>
 
-       <li class="nav-item dropdown">
-        <div class="nav-link dropdown-toggle nav-link-navbar" id="navbarDropdown-post" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Посты
-        </div>
-        <div id="dropdown-menu-navbar-post" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/add-post">Добавить пост</a>
-          <a class="dropdown-item" href="/post-list">Список постов</a>
-        </div>
-      </li>
+  <div class='dropdown'>
+    <div class='dropdown-title'> Пользователи <img src="menu.svg" alt=""> </div>
+    <div class='dropdown-items'>
+      <a class='dropdown-item' href="/add-user"> Добавить пользователя</a>
+      <a class='dropdown-item' href="/user-list">Список пользователей</a>
+    </div>
+  </div>
 
- 
-      <li class="nav-item dropdown">
-        <div class="nav-link dropdown-toggle nav-link-navbar" id="navbarDropdown-user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Пользователи
-        </div>
-        <div id="dropdown-menu-navbar-user" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/add-user">Добавить пользователя</a>
-          <a class="dropdown-item" href="/user-list">Список пользователей</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  {{!-- <div  class='time'>00:00:00</div> --}}
   </div>
 </nav>
 
@@ -59,14 +45,29 @@
     </div>
   </nav> --}}
 
-  <script>
+{{!-- <script>
+  setInterval(() => {
+    let new_date = new Date().toJSON()
+    $(".time").text(new_date.slice(0, 10) + ' ' + new_date.slice(11, 19))
+  }, 1000);
 
-    $("#navbarDropdown-post").on("click", function () {
-      $("#dropdown-menu-navbar-post").toggleClass("dropdown-menu-display");
-    });
 
-    $("#navbarDropdown-user").on("click", function () {
-      $("#dropdown-menu-navbar-user").toggleClass("dropdown-menu-display");
-    });
+</script> --}}
 
-  </script>
+<script>
+
+  $(".dropdown-item").on("click", () => {
+    if($('.dropdown-item','.dropdown-title').length == 1) {
+      
+    }
+  });
+
+  $("#navbarDropdown-post").on("click", function () {
+    $("#dropdown-menu-navbar-post").toggleClass("dropdown-menu-display");
+  });
+
+  $("#navbarDropdown-user").on("click", function () {
+    $("#dropdown-menu-navbar-user").toggleClass("dropdown-menu-display");
+  });
+
+</script>

@@ -1,7 +1,6 @@
 {
   "name": "app1-men",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -17,5 +16,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoji0w/app1-MEN.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xiaoji0w/app1-MEN/issues"
+  },
+  "homepage": "https://github.com/xiaoji0w/app1-MEN#readme",
+  "description": ""
 }

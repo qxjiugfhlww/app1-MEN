@@ -1,10 +1,12 @@
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
 
-  background-color: rgb(230, 230, 230);
+  background-color: #e6e6e6;
 }
 
 /* @import url("/public/navbar.css");

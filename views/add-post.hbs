@@ -1,32 +1,35 @@
 <div class="add-post">
-  <h2>Создать пост</h2>
+
   <form class='add-post_form' action="/add-post" method="POST">
-    <textarea name="post" class="form-control" id="exampleFormControlTextarea3" placeholder="Type post here..."
+    <textarea name="post" class="form-control" id="exampleFormControlTextarea3" placeholder="Введите новый пост..."
       required></textarea>
     <div class="interact">
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <button id="button-select-id" class="btn btn-outline-secondary dropdown-toggle" type="input" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">+</button>
-          <div id="dropdown-show-id" class="dropdown-menu">
-            {{#if users.length}}
+          <div id="button-select-id" class="btn btn-outline-secondary dropdown-toggle" type="input"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+
+            <div id="dropdown-show-id" class="dropdown-menu">
+              {{#if users.length}}
               {{#each users}}
-                <a class="dropdown-item">{{user_name}}</a>
+              <a class="dropdown-item">{{user_name}}</a>
               {{/each}}
-            {{/if}}
+              {{/if}}
+            </div>
           </div>
+
         </div>
         <input name='names' id='tg-id' type="text" class="form-control" aria-label="Text input with dropdown button">
       </div>
+      
 
 
       {{!-- <input autocomplete="off" name="id" id='tg-id' class="form-control" type="text" placeholder="ID" required> --}}
       <div id="dropdown-show-id" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         {{#if users.length}}
-          {{#each users}}
-            <a class="dropdown-item">{{user_name}}</a>
-          {{/each}}
+        {{#each users}}
+        <a class="dropdown-item">{{user_name}}</a>
+        {{/each}}
         {{/if}}
       </div>
 
@@ -36,26 +39,27 @@
 
       <div class="add-rate">
         <div class="dropdown show">
-          <button class="btn btn-secondary dropdown-toggle" type="input" id="dropdownMenuButton" data-toggle="dropdown"
+          <div class="btn btn-secondary dropdown-toggle" type="input" id="button-select-rate" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            day
-          </button>
-          <div id="dropdown-show-rate" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item">year</a>
-            <a class="dropdown-item">month</a>
-            <a class="dropdown-item">week</a>
-            <a class="dropdown-item">day</a>
-            <a class="dropdown-item">hour</a>
-            <a class="dropdown-item">minute</a>
-            <a class="dropdown-item">second</a>
+            <span> день </span>
+            <div id="dropdown-show-rate" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item">год</a>
+              <a class="dropdown-item">месяц</a>
+              <a class="dropdown-item">неделя</a>
+              <a class="dropdown-item">день</a>
+              <a class="dropdown-item">час</a>
+              <a class="dropdown-item">минута</a>
+              <a class="dropdown-item">секунда</a>
 
+            </div>
           </div>
+
         </div>
-        <input id="num_rate" name="num_rate" class="form-control" type="text" placeholder="rate" required>
+        <input id="num_rate" name="num_rate" class="form-control" type="text" placeholder="частота" required>
 
       </div>
 
-      <button id='sendButton' class="btn btn-primary" type="submit">Create</button>
+      <button id='sendButton' class="btn btn-primary create-post_btn" type="submit">Create</button>
     </div>
 
     <input type="hidden" value="" name="date_start_y" id="date_start_y">
@@ -83,15 +87,11 @@
 
   $(function () {
 
-    $('#button-select-id').on("click", () => {
-      $("#dropdown-show-id").toggleClass("show");
-    });
+
 
 
     $("#dropdown-show-id a").on("click", function () {
-      $("#tg-id").val( $("#tg-id").val()+$(this).text()+"; ");
-
-      $("#dropdown-show-id").toggleClass("show");
+      $("#tg-id").val($("#tg-id").val() + $(this).text() + "; ");
     });
 
     $('#sendButton').on("click", () => {
@@ -107,19 +107,14 @@
       $('#date_end_h').val($('#date_end').val().slice(11, 13));
       $('#date_end_mt').val($('#date_end').val().slice(14, 16));
 
-      $('#time_rate').val($('#dropdownMenuButton').text());
+      $('#time_rate').val($('#button-select-rate span').text());
 
       console.log($('#date_start_y').val());
     });
 
 
-    $("#dropdownMenuButton").on("click", function () {
-      $("#dropdown-show-rate").toggleClass("show");
-    });
-
     $("#dropdown-show-rate a").on("click", function () {
-      $("#dropdownMenuButton").html($(this).text());
-      $("#dropdown-show-rate").toggleClass("show");
+      $("#button-select-rate span").text($(this).text());
     });
 
 

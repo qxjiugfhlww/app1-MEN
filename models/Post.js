@@ -61,6 +61,13 @@ const Post = new Schema({
   send : {
     type: Number,
     required: false
+  },
+  counter: {
+    type: Number,
+    required: false
+  },
+  time_between: {
+    type: Number,
   }
 });
 

@@ -34,6 +34,7 @@ app.use(express.static('views/img'));
 
 app.use(router);
 
+
 // app.post('/add', async (req, res, next) => {
 //   posts = await Posts.find({});
 //   console.log('Time:', Date.now());
@@ -50,10 +51,10 @@ async function start() {
         useFindAndModify: false,
         useUnifiedTopology: true 
       })
-    app.listen(PORT, () => {
+    app.listen(PORT, async () => {
       console.log('Server started...');
-      reload(intervals);
-     
+      intervals = await reload(intervals, 'none');
+      module.exports = intervals;
     })
 
 
@@ -152,8 +153,6 @@ async function start() {
 
 start();
 
-
-module.exports = {intervals};
 
 
 

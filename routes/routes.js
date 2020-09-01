@@ -1,4 +1,4 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const Post = require('../models/Post');
 const User = require('../models/User');
 
@@ -12,44 +12,61 @@ bot.hears('Hi', ctx => {
   return ctx.reply('hello');
 });
 
-// let intervals = [];
-async function reload(intervals) {
-  console.log("reload");
-  let posts = await Post.find({});
-  //console.log(posts);
-  posts = posts.map(posts => posts.toJSON());
-  console.log(posts[0].post);
-  for (let i=0; i < posts.length; i++) {
 
+let intervals = require('../index');
+console.log('ROUTES')
+console.log(intervals);
+console.log(typeof(intervals));
+
+async function reload(intervals, code) {
+  console.log("reload");
+  console.log(intervals);  let posts;
+  if (code == 'add_one') {
+    console.log('add_one', Post);
+    posts = await Post.find().limit(1).sort({$natural:-1});
+  } else {
+    posts = await Post.find({});
+  }
+  console.log('posts');
+  console.log(posts);
+  
+  posts = posts.map(posts => posts.toJSON());
+  for (let i = 0; i < posts.length; i++) {
     let time_rate;
-    if (posts[i].time_rate == "second") {
+    if (posts[i].time_rate == "секунда") {
       time_rate = posts[i].num_rate * 1000;
-    } else if (posts[i].time_rate == "minute") {
-      time_rate = posts[i].num_rate * 1000*60;
-    } else if (posts[i].time_rate == "hour") {
-      time_rate = posts[i].num_rate * 1000*60*60;
-    } else if (posts[i].time_rate == "day") {
-      time_rate = posts[i].num_rate * 1000*60*60*24;
-    } else if (posts[i].time_rate == "week") {
-      time_rate = posts[i].num_rate * 1000*60*60*24*7;
-    } else if (posts[i].time_rate == "month") {
-      time_rate = posts[i].num_rate * 1000*60*60*24*7*30;
-    } else if (posts[i].time_rate == "year") {
-      time_rate = posts[i].num_rate * 1000*60*60*24*7*30*256;
+    } else if (posts[i].time_rate == "минута") {
+      time_rate = posts[i].num_rate * 1000 * 60;
+    } else if (posts[i].time_rate == "час") {
+      time_rate = posts[i].num_rate * 1000 * 60 * 60;
+    } else if (posts[i].time_rate == "день") {
+      time_rate = posts[i].num_rate * 1000 * 60 * 60 * 24;
+    } else if (posts[i].time_rate == "неделя") {
+      time_rate = posts[i].num_rate * 1000 * 60 * 60 * 24 * 7;
+    } else if (posts[i].time_rate == "месяц") {
+      time_rate = posts[i].num_rate * 1000 * 60 * 60 * 24 * 7 * 30;
+    } else if (posts[i].time_rate == "год") {
+      time_rate = posts[i].num_rate * 1000 * 60 * 60 * 24 * 7 * 30 * 256;
     }
 
-    intervals.push(setInterval(() => {
-      let currentdate = new Date();
-      if (currentdate >= posts[i].date_start && currentdate <= posts[i].date_end) {
-        for (let j=0; j<posts[i].id.length; j++) {
-          console.log('' + i + ' ' + j + ' ' + posts[i].id[j]);
-          bot.telegram.sendMessage(posts[i].id[j], posts[i].post)
-        }
-      }
-    }, time_rate))
+    intervals.push(
+      {
+        si: setInterval(async () => {
+          let currentdate = new Date();
+          if (currentdate >= posts[i].date_start && currentdate <= posts[i].date_end) {
+            for (let j = 0; j < posts[i].id.length; j++) {
+              console.log('' + i + ' ' + j + ' ' + posts[i].id[j]);
+              await bot.telegram.sendMessage(posts[i].id[j], posts[i].post)
+            }
+          }
+        }, time_rate),
+        post_id: posts[i]._id
+      });
+    console.log(intervals);
   }
-  console.log("in intervals");
-  //console.log(intervals);
+
+  //console.log("in intervals");
+
   return intervals;
 }
 
@@ -62,21 +79,58 @@ router.get('/post-list', async (req, res) => {
     isCreate: false,
     posts: posts.map(posts => posts.toJSON())
   });
-  console.log("in get'/'");
+  intervals = require('../index');
+  console.log('get /post-list')
+  console.log(intervals);
 })
 
+router.get('/', async (req, res) => {
+  const posts = await Post.find({});
+  res.render('main', {
+  });
+  intervals = require('../index');
+  console.log('get /')
+  console.log(intervals);
+  console.log(Object.keys(intervals));
+})
 
-router.get('/post-list/delete/:id', async function(req, res) { 
-  let db = req.db;
-  console.log(db);
-  let uid = req.params.id.toString();
-  console.log(uid);
+router.get('/post-list/delete/:id', async function (req, res) {
 
-  res.send(req.params.id);
-  const users = await Post.find({_id: uid});
+  //const posts = await Post.find({});
+  //const users = await Post.find({ _id: uid });
+  Post.findOneAndRemove({ _id: req.params.id }, function (err) {
+  });
+
+
+  intervals = require('../index');
+  console.log('get /post-list/delete/:id')
+  console.log('1');
+  console.log(intervals);
+  //intervals.forEach(clearInterval).si;
+
+  for (let i=0; i < intervals.length; i++) {
+    if (intervals[i].post_id == req.params.id) {
+      clearInterval(intervals[i].si);
+      intervals.splice(i, 1);
+    }
+  }
+  console.log('2');
+  console.log(intervals);
+
+
   //let user = Post.remove({uid});
 
+  res.redirect('/post-list');
 
+});
+
+
+router.get('/user-list/delete/:id', async function (req, res) {
+
+  //const posts = await Post.find({});
+  //const users = await Post.find({ _id: uid });
+  User.findOneAndRemove({ _id: req.params.id }, function (err) {
+  });
 
   res.redirect('/user-list');
 
@@ -102,36 +156,34 @@ router.get('/add-post', async (req, res) => {
     isIndex: false,
     users: users.map(users => users.toJSON())
   });
-    console.log("in get'/add'");
+  console.log('get /add-post');
+  intervals = require('../index');
+  console.log(intervals);
+  console.log(Object.keys(intervals));
+
 });
 
 router.get('/add-user', (req, res) => {
+
   res.render('add-user', {
     title: 'Add user',
     isCreate: true,
     isIndex: false,
   });
-    console.log("in get'/add-user'");
+
 });
 
 
-let setInt_array = [];
-let intervals = [];
 router.post('/add-post', async (req, res) => {
-  console.log("in post'/add'");
+  console.log('post /add-post');
   let user_name_arr = req.body.names.split('; ');
-  console.log("user_name_arr: " +  user_name_arr);
   const users = await User.find({
     "user_name": user_name_arr
   });
-  
-  console.log("users: " + users);
 
-  for (let i=0; i< users.length; i++) {
+  for (let i = 0; i < users.length; i++) {
     users[i] = users[i].user_id;
   }
-  console.log("users2: " + users);
-
 
   const post = new Post({
     post: req.body.post,
@@ -139,21 +191,18 @@ router.post('/add-post', async (req, res) => {
     date_end: req.body.date_end,
     time_rate: req.body.time_rate,
     num_rate: req.body.num_rate,
-    id: users
-
+    id: users,
   })
-
-
   await post.save();
-  let {intervals} = require('../index');
-  
-  //console.log(intervals)
-  intervals.forEach(clearInterval);
-  reload(intervals);
-  //console.log(intervals);
+
+  intervals = require('../index');
+  console.log(intervals)
+  //intervals.forEach(clearInterval);
+  intervals = await reload(intervals, 'add_one');
+  console.log(intervals);
+
 
   res.redirect('/post-list');
-
 })
 
 
@@ -182,4 +231,4 @@ router.post('/add-user', async (req, res) => {
 //   res.redirect('/');
 // });
 
-module.exports = {router, reload};
+module.exports = { router, reload };

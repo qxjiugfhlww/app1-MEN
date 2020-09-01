@@ -1,42 +1,35 @@
 <div class="post-list">
 
-<h2>00:00:00</h2>
 
 
-{{#if posts.length}}
+
+  {{#if posts.length}}
   {{#each posts}}
   <div class="post">
     <div class="post-info">
-      <span>ID {{id}}</span>
-      <p>{{post}}</p>
-      <div class="dates">
-        <span>{{date}}</span>
-      </div>
-      
+      <span> ID {{id}}</span>
+        <a class ="post-delete" href='/post-list/delete/{{_id}}'>
+          <img id="delete-post" src="close.svg" alt="">
+          <div class="invisible-id">{{_id}}</div>
+        </a>
+        
     </div>
-    <div class="post-delete">
-      <a href='/post-list/delete/{{_id}}'>
-        <img id="delete-post" src="close.svg" alt="">
-      </a>
-      <div class="invisible-id">{{_id}}</div>
+    <p>{{post}}</p>
+    <div class="dates">
+      <span>{{date}}</span>
     </div>
 
-  </div>  
+
+  </div>
   {{/each}}
-{{else}}
-<p>Nothing!</p>
-{{/if}}
+  {{else}}
+  <p>Нет постов</p>
+  {{/if}}
 
 
 </div>
 
-<script>
-  setInterval(() => {
-    $("h2").text(new Date().toJSON().slice(0,19))
-  }, 1000);
 
-  
-</script>
 
 
 {{!-- 
@@ -79,42 +72,7 @@
     });
 
 
-    $("#dropdown-show-id a").on("click", function () {
-      $("#tg-id").val( $("#tg-id").val()+$(this).text()+"; ");
-
-      $("#dropdown-show-id").toggleClass("show");
-    });
-
-    $('#sendButton').on("click", () => {
-      $('#date_start_y').val($('#date_start').val().slice(0, 4));
-      $('#date_start_m').val($('#date_start').val().slice(5, 7));
-      $('#date_start_d').val($('#date_start').val().slice(8, 10));
-      $('#date_start_h').val($('#date_start').val().slice(11, 13));
-      $('#date_start_mt').val($('#date_start').val().slice(14, 16));
-
-      $('#date_end_y').val($('#date_end').val().slice(0, 4));
-      $('#date_end_m').val($('#date_end').val().slice(5, 7));
-      $('#date_end_d').val($('#date_end').val().slice(8, 10));
-      $('#date_end_h').val($('#date_end').val().slice(11, 13));
-      $('#date_end_mt').val($('#date_end').val().slice(14, 16));
-
-      $('#time_rate').val($('#dropdownMenuButton').text());
-
-      console.log($('#date_start_y').val());
-    });
-
-
-    $("#dropdownMenuButton").on("click", function () {
-      $("#dropdown-show-rate").toggleClass("show");
-    });
-
-    $("#dropdown-show-rate a").on("click", function () {
-      $("#dropdownMenuButton").html($(this).text());
-      $("#dropdown-show-rate").toggleClass("show");
-    });
-
-
-
+    
   });
 
 </script>

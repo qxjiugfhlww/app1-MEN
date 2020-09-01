@@ -1,22 +1,26 @@
 <div class="user-list">
 
-<h2>00:00:00</h2>
-
-
 {{#if users.length}}
   {{#each users}}
   <div class="user">
     <div class="user-info">
-      <span>ID: {{user_id}}</span>
-      <p>{{user_name}}</p>
+      <span> ID {{user_id}}</span>
+        <a class ="user-delete" href='/user-list/delete/{{_id}}'>
+          <img id="delete-user" src="close.svg" alt="">
+          <div class="invisible-id">{{_id}}</div>
+        </a>
+        
     </div>
-    <div class="user-status">
+    <p>{{user_name}}</p>
+    <div class="dates">
+      <span>{{date}}</span>
+    </div>
 
-    </div>
-  </div>  
+
+  </div>
   {{/each}}
 {{else}}
-<p>Nothing!</p>
+<p>Нет пользователей</p>
 {{/if}}
 
 
